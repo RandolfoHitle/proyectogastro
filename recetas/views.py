@@ -11,7 +11,8 @@ def detalle_receta(request, receta_id):
     return render(request, 'recetas/detalle_receta.html', {'receta': receta})
 # Parte pública final
 def lista_recetas(request):
-    return render(request, 'recetas/lista_recetas.html')
+    recetas = Receta.objects.all()
+    return render(request, 'recetas/lista_recetas.html', {'recetas': recetas})
 
 # Parte privada (requiere autenticación)
 from django.contrib.auth.decorators import login_required
