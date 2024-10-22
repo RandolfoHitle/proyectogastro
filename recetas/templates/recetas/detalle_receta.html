@@ -1,0 +1,20 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<div id="app">
+    <h1>{{ receta.nombre }}</h1>
+    <p>{{ receta.descripcion }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            receta: {
+                nombre: "{{ receta.nombre }}",
+                descripcion: "{{ receta.descripcion }}"
+            }
+        }
+    });
+</script>
+<p>Categoría: {{ receta.categoria.nombre }}</p>
+<p>Publicado el: {{ receta.fecha_publicacion }}</p>
