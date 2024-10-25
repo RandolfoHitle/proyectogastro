@@ -1,7 +1,0 @@
-<h1>Gestión de Recetas</h1>
-<ul>
-    {% for receta in recetas %}
-        <li>{{ receta.nombre }} - <a href="#">Editar</a> - <a href="#">Eliminar</a></li>
-    {% endfor %}
-    <a href="{% url 'logout' %}">Cerrar sesión</a>
-</ul>
