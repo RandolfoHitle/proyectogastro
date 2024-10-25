@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Bienvenido a Innovación Gastronómica</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <h2>¿Qué es la Gastronomía?</h2>
+            <p>
+                La gastronomía es el arte y la ciencia de preparar, cocinar y presentar alimentos. 
+                Abarca una amplia variedad de técnicas culinarias, ingredientes, y tradiciones 
+                que se han desarrollado a lo largo de la historia. La gastronomía no solo se trata de la comida en sí, 
+                sino también de la cultura que la rodea y las experiencias que se generan a través de ella.
+            </p>
+            <p>
+                En nuestro sitio, exploramos la diversidad de la cocina mundial, desde recetas tradicionales 
+                hasta innovaciones modernas. Aquí encontrarás una variedad de platos que puedes preparar en casa, 
+                así como consejos y técnicas para mejorar tus habilidades culinarias.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <img src="https://www.prensalibre.com/wp-content/uploads/2023/05/platanos-en-mole-comida-tipica.jpeg?quality=52&w=1024" class="img-fluid rounded" alt="Imagen de Gastronomía">
+        </div>
+    </div>
+
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="text-center">Recetas Destacadas</h2>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        {% for receta in ultimas_recetas %}
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem; height: 100%;"> <!-- Tamaño fijo de la tarjeta -->
+                <!-- Imagen con tamaño fijo -->
+                <img src="{{ receta.imagen.url }}" class="card-img-top" alt="{{ receta.titulo }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body d-flex flex-column"> <!-- Para asegurar que el contenido se distribuya -->
+                    <h5 class="card-title">{{ receta.titulo }}</h5>
+                    <p class="card-text">{{ receta.descripcion|truncatewords:15 }}</p>
+                    <!-- Botón alineado abajo -->
+                    <a href="{% url 'receta_detailPublic' receta.id %}" class="btn btn-primary mt-auto">Ver Receta</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No hay recetas disponibles en este momento.</p>
+        {% endfor %}
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="text-center">Sugerencias de la Comunidad</h2>
+            <p class="text-center">
+                ¿Tienes alguna receta o consejo culinario que te gustaría compartir? 
+                ¡Déjanos tu sugerencia y sé parte de nuestra comunidad gastronómica!
+            </p>
+            <div class="text-center">
+                <a href="{% url 'login' %}" class="btn btn-success">Ingresar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

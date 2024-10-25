@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Recetas</h1>
+    
+    <!-- Filtro por nombre y categoría -->
+    <form method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre" value="{{ request.GET.nombre }}">
+            </div>
+            <div class="col-md-4">
+                <select name="categoria" class="form-control">
+                    <option value="">Seleccione una categoría</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{ categoria.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for receta in recetas %}
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem; height: 100%;"> <!-- Tamaño fijo de la tarjeta -->
+                <img src="{{ receta.imagen.url }}" class="card-img-top" alt="{{ receta.titulo }}" style="height: 200px; object-fit: cover;"> <!-- Imagen con tamaño fijo -->
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ receta.titulo }}</h5>
+                    <p class="card-text">{{ receta.ingredientes|truncatewords:15 }}</p>
+                    <p class="card-text"><small class="text-muted">Categorías: {% for cat in receta.categoria.all %}{{ cat.nombre }}{% if not forloop.last %}, {% endif %}{% endfor %}</small></p>
+                    <a href="{% url 'receta_detailPublic' receta.id %}" class="btn btn-primary mt-auto">Ver Detalles</a> <!-- Botón alineado abajo -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

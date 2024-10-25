@@ -13,7 +13,7 @@ class Receta(models.Model):
     titulo = models.CharField(max_length=200)
     ingredientes = models.TextField()
     instrucciones = models.TextField()
-    tiempo_preparacion = models.IntegerField()
+    tiempo_preparacion = models.IntegerField()  # En minutos
     categoria = models.ManyToManyField(Categoria)
     imagen = models.ImageField(upload_to='recetas/')
     autor = models.ForeignKey(User, on_delete=models.CASCADE)

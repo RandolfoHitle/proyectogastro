@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <!-- Encabezado centrado -->
+    <h1 class="text-center">{{ receta.nombre }}</h1>
+
+    <!-- Imagen con borde y sombra -->
+    <div class="text-center">
+        <img src="{{ receta.imagen.url }}" class="img-fluid rounded shadow" alt="{{ receta.nombre }}">
+    </div>
+
+    <!-- Categorías como etiquetas -->
+    <div class="my-3">
+        {% for categoria in categorias %}
+        <span class="badge bg-primary me-2">{{ categoria.nombre }}</span>
+        {% endfor %}
+    </div>
+
+    <!-- Descripción con formato -->
+    <p class="mt-3">{{ receta.descripcion }}</p>
+
+    <!-- Botón bien alineado -->
+    <a href="{% url 'recetasPublic' %}" class="btn btn-secondary mt-3">Volver a Recetas</a>
+</div>
+{% endblock %}
