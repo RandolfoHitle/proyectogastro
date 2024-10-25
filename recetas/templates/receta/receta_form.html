@@ -1,0 +1,56 @@
+{% extends 'baseAdmin.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">{% if object.pk %}Editar Receta{% else %}Crear Receta{% endif %}</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.titulo.id_for_label }}" class="form-label">Título</label>
+            {{ form.titulo|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.imagen.id_for_label }}" class="form-label">Imagen</label>
+            {{ form.imagen|add_class:"form-control-file" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.ingredientes.id_for_label }}" class="form-label">Ingredientes</label>
+            {{ form.ingredientes|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.instrucciones.id_for_label }}" class="form-label">Instrucciones</label>
+            {{ form.instrucciones|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.tiempo_preparacion.id_for_label }}" class="form-label">Tiempo de Preparación</label>
+            {{ form.tiempo_preparacion|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.valoracion.id_for_label }}" class="form-label">Valoración</label>
+            {{ form.valoracion|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoría</label>
+            {{ form.categoria|add_class:"form-control" }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.autor.id_for_label }}" class="form-label">Autor</label>
+            {{ form.autor|add_class:"form-control" }}
+        </div>
+
+        <a href="{% url 'receta-list' %}" class="btn">Volver a la lista</a>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    
+</div>
+{% endblock %}

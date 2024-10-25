@@ -1,0 +1,21 @@
+{% extends 'baseAdmin.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">{% if object.pk %}Editar Categoría{% else %}Crear Categoría{% endif %}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+            {{ form.nombre|add_class:"form-control" }}
+        </div>
+
+        <a href="{% url 'categoria-list' %}" class="btn ">Volver a la lista</a>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    
+</div>
+{% endblock %}

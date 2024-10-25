@@ -1,0 +1,38 @@
+{% extends 'baseAdmin.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">Lista de Categorías</h1>
+    
+        <a href="{% url 'categoria-create' %}" class="btn btn-primary mb-3">Crear Nueva Categoría</a>
+    
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ categoria.nombre }}</td>
+                <td>
+                    <a href="{% url 'categoria-update' categoria.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'categoria-delete' categoria.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if not categorias %}
+        <div class="alert alert-info" role="alert">
+            No hay categorías disponibles.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

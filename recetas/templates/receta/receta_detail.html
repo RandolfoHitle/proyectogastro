@@ -1,0 +1,26 @@
+{% extends 'baseAdmin.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">{{ receta.titulo }}</h1>
+    
+    <div class="card mb-4">
+        <img src="{{ receta.imagen.url }}" class="card-img-top" alt="Imagen de la receta" style="height: 300px; object-fit: cover;">
+        <div class="card-body">
+            <h5 class="card-title">Detalles de la Receta</h5>
+            <p class="card-text"><strong>Ingredientes:</strong> {{ receta.ingredientes }}</p>
+            <p class="card-text"><strong>Instrucciones:</strong> {{ receta.instrucciones }}</p>
+            <p class="card-text"><strong>Tiempo de preparación:</strong> {{ receta.tiempo_preparacion }} minutos</p>
+            <p class="card-text"><strong>Valoración:</strong> {{ receta.valoracion }}</p>
+            <p class="card-text"><strong>Autor:</strong> {{ receta.autor }}</p>
+            <p class="card-text"><strong>Categorías:</strong>
+                {% for cat in receta.categoria.all %}
+                {{ cat.nombre }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    
+    <a href="{% url 'receta-list' %}" class="btn btn-primary">Volver a la lista</a>
+</div>
+{% endblock %}

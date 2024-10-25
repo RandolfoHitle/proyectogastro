@@ -1,0 +1,12 @@
+{% extends "baseAdmin.html" %}
+{% block content %}
+    <div class="container">
+        <h1>Eliminar Usuario</h1>
+        <p>¿Estás seguro que deseas eliminar al usuario "{{ object.username }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}
